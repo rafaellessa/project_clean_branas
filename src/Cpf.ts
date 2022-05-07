@@ -1,8 +1,10 @@
 export default class Cpf {
   private FIRST_DIGIT_FACTOR = 10
   private SECOND_DIGIT_FACTOR = 11
+  value: string
   constructor (value: string) {
     if (!this.validate(value)) throw new Error('Cpf inválido')
+    this.value = value
   }
 
   validate (rawCpf: string) {

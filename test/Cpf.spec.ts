@@ -3,18 +3,18 @@ import Cpf from '../src/Cpf'
 describe('CPF', () => {
   it('Deve validar um cpf válido', () => {
     const cpf = new Cpf('903.542.750-54')
-    expect(cpf).toBeTruthy()
+    expect(cpf.value).toBe('903.542.750-54')
   })
   it('Deve validar um cpf inválido', () => {
     expect(() => new Cpf('123.456.789-99')).toThrow(new Error('Cpf inválido'))
   })
 
   it('Deve validar um cpf válido sem os pontos', () => {
-    expect(new Cpf('90354275054')).toBeTruthy()
+    expect(new Cpf('90354275054').value).toBe('90354275054')
   })
 
   test('Deve validar um cpf válido com alguns pontos', function () {
-    expect(new Cpf('935.411.34780')).toBeTruthy()
+    expect(new Cpf('935.411.34780').value).toBe('935.411.34780')
   })
 
   const wrongSameDigitCpf = [

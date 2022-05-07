@@ -23,4 +23,14 @@ describe('test', () => {
     const total = order.getTotal()
     expect(total).toBe(4848)
   })
+
+  it('Não deve aplicar cupom de desconto expirado', () => {
+    const order = new Order('304.686.390-04', new Date('2022-05-05T10:00:00'))
+    order.addItems(new Item(1, 'Guitarra', 2000), 1)
+    order.addItems(new Item(2, 'Amplificador', 4000), 1)
+    order.addItems(new Item(3, 'Cabo', 30), 2)
+    order.addCoupon(new Coupon('VALE20', 20, new Date('2022-04-01T10:00:00')))
+    const total = order.getTotal()
+    expect(total).toBe(6060)
+  })
 })

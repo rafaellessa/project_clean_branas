@@ -1,5 +1,5 @@
 
-import Cpf from '../src/Cpf'
+import Cpf from '../../src/domain/entity/Cpf'
 describe('CPF', () => {
   it('Deve validar um cpf válido', () => {
     const cpf = new Cpf('903.542.750-54')

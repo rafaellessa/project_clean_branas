@@ -1,4 +1,4 @@
-import Coupon from '../src/Coupon'
+import Coupon from '../../src/domain/entity/Coupon'
 describe('test', () => {
   it('Deve calcular o desconto de um coupon', () => {
     const coupon = new Coupon('VALE30', 30, new Date())

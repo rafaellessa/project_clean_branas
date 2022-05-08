@@ -1,4 +1,4 @@
-import OrderItem from '../src/OrderItem'
+import OrderItem from '../../src/domain/entity/OrderItem'
 describe('test', () => {
   it('Deve criar um item de pedido', () => {
     const orderItem = new OrderItem(1, 'Guitarra', 2000, 1)

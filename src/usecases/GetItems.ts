@@ -1,4 +1,5 @@
-import ItemRepository from './ItemRepository'
+import ItemRepository from '../domain/repository/ItemRepository'
+
 type GetItemsResponse = {
   idItem: number
   description: string

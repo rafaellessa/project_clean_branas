@@ -44,4 +44,12 @@ describe('test', () => {
     const total = order.getTotal()
     expect(total).toBe(6310)
   })
+
+  it('Deve criar um pedido com 3 itens e gerar um código seguindo o padrao AAAAPPPPPPPP', () => {
+    const order = new Order('304.686.390-04', new Date('2021-03-01T10:00:00'))
+    order.addItems(new Item(1, 'Guitarra', 2000), 1)
+    order.addItems(new Item(2, 'Amplificador', 4000), 1)
+    order.addItems(new Item(3, 'Cabo', 30), 2)
+    expect(order.code.value).toBe('202100000001')
+  })
 })

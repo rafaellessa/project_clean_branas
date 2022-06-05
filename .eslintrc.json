@@ -24,6 +24,8 @@
         "no-redeclare": "off",
         "import/export": "off",
         "no-undef":"off",
-        "no-useless-constructor":"off"
+        "no-useless-constructor":"off",
+        "no-new-wrappers": "off",
+        "no-return-assign": "off"
     }
 }

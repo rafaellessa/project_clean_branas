@@ -13,4 +13,16 @@ describe('ValidateCoupon', () => {
     const output = await validateCoupon.execute(input)
     expect(output.isExpired).toBeTruthy()
   })
+
+  it('Deve validar um cupom de desconto valido', async () => {
+    const couponRepository = new CouponRepositoryMemory()
+    couponRepository.save(new Coupon('VALE20', 20, new Date('2021-03-12T10:00:00')))
+    const validateCoupon = new ValidateCoupon(couponRepository)
+    const input = {
+      code: 'VALE20',
+      date: new Date('2021-03-10T10:00:00')
+    }
+    const output = await validateCoupon.execute(input)
+    expect(output.isExpired).toBeFalsy()
+  })
 })

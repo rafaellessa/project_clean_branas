@@ -1,1 +1,2 @@
-node_modules
+api/code/node_modules
+.env

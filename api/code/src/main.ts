@@ -1,10 +1,11 @@
-import Dimension from '../../../domain/entity/Dimension'
-import Item from '../../../domain/entity/Item'
-import GetItems from '../../../usecases/GetItems'
-import ExpressAdapter from '../../http/ExpressAdapter'
-import ItemRepositoryMemory from './ItemRepositoryMemory'
+import Dimension from './domain/entity/Dimension'
+import Item from './domain/entity/Item'
+import GetItems from './usecases/GetItems'
+import ExpressAdapter from './infra/http/ExpressAdapter'
+import ItemRepositoryMemory from './infra/repository/memory/ItemRepositoryMemory'
 
 const http = new ExpressAdapter()
+const httpPort = process.env.CLEAN_API_PORT
 
 const itemRepository = new ItemRepositoryMemory()
 itemRepository.save(new Item(1, 'Guitarra', 2000, new Dimension(100, 30, 10), 3))
@@ -16,4 +17,4 @@ http.on('get', '/items', async (params: any, body: any) => {
   const response = await getItems.execute()
   return response
 })
-http.listen(3000)
+http.listen(Number(httpPort) || 3001)

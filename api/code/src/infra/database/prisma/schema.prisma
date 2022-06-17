@@ -31,8 +31,8 @@ model Coupon {
 
 model Order {
   id_order Int @id @default(autoincrement())
-  coupon_code String
-  coupon_percentage Decimal
+  coupon_code String?
+  coupon_percentage Decimal?
   code String
   cpf String
   issue_date DateTime

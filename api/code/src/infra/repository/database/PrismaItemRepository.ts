@@ -1,7 +1,7 @@
-import Item from '../../../domain/entity/Item'
-import ItemRepository from '../../../domain/repository/ItemRepository'
 import { PrismaClient } from '@prisma/client'
 import Dimension from '../../../domain/entity/Dimension'
+import Item from '../../../domain/entity/Item'
+import ItemRepository from '../../../domain/repository/ItemRepository'
 
 export default class PrismaItemRepository implements ItemRepository {
   constructor (private readonly prisma: PrismaClient) {
@@ -17,8 +17,24 @@ export default class PrismaItemRepository implements ItemRepository {
     return new Item(item.id_item, item.description, Number(item.price), new Dimension(item.width, item.height, item.length), item.weight)
   }
 
-  save (item: Item): Promise<void> {
-    throw new Error('Method not implemented.')
+  async save (item: Item): Promise<Item> {
+    if (!item.dimension || !item.weight) throw new Error('Dimensions not found')
+    const itemDb = await this.prisma.item.create({
+      data: {
+        description: item.description,
+        category: '',
+        price: item.price,
+        width: item.dimension?.width,
+        height: item.dimension?.height,
+        weight: item.weight,
+        length: item.dimension.length
+      },
+      select: {
+        id_item: true
+      }
+    })
+
+    return new Item(itemDb.id_item, item.description, item.price, new Dimension(item.dimension.width, item.dimension.height, item.dimension.length), item.weight)
   }
 
   async list (): Promise<Item[]> {

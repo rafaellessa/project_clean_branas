@@ -14,4 +14,9 @@ export default class OrderRepositoryMemory implements OrderRepository {
   async count (): Promise<number> {
     return this.orders.length
   }
+
+  getOrder (code: string): Promise<Order | undefined> {
+    const order = this.orders.find(order => order.code.value === code)
+    return Promise.resolve(order)
+  }
 }

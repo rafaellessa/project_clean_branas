@@ -1,6 +1,6 @@
 import Item from '../entity/Item'
 export default interface ItemRepository {
   getItem(idItem: number): Promise<Item>
-  save(item: Item): Promise<void>
+  save(item: Item): Promise<Item>
   list(): Promise<Item[]>
 }

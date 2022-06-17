@@ -2,3 +2,4 @@ api/code/node_modules
 .env
 api/code/package-lock.json
 api/code/src/infra/database/prisma/.env
+api/code/yarn.lock

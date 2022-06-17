@@ -4,9 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import Dimension from '../../../domain/entity/Dimension'
 
 export default class PrismaItemRepository implements ItemRepository {
-  prisma: PrismaClient
-  constructor () {
-    this.prisma = new PrismaClient()
+  constructor (private readonly prisma: PrismaClient) {
   }
 
   async getItem (idItem: number): Promise<Item> {

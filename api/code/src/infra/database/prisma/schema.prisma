@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  id_item Int @id @default(autoincrement())
+  category String
+  description String
+  price Decimal
+  width Int
+  height Int
+  length Int
+  weight Int
+  orders Order[]
+}
+
+model Coupon {
+  id_coupon Int @id @default(autoincrement())
+  code String @unique
+  percentage Decimal
+  expire_date DateTime
+}
+
+model Order {
+  id_order Int @id @default(autoincrement())
+  coupon_code String
+  coupon_percentage Decimal
+  code String
+  cpf String
+  issue_date DateTime
+  freight Decimal
+  sequence Int
+  total Decimal
+  items Item[]
+}
+
+model OrderItem {
+  id_order Int
+  id_item Int
+  price Decimal
+  quantity Int
+  @@id([id_item, id_order])
+}

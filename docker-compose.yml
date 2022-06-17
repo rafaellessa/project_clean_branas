@@ -21,6 +21,7 @@ services:
        # Ambiente do node
       CLEAN_API_ENV: ${CLEAN_API_ENV}
       CLEAN_API_PORT: ${CLEAN_API_PORT}
+      DATABASE_URL: ${DATABASE_URL}
     networks:
       - clean-network
     depends_on:
